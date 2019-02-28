@@ -16,7 +16,7 @@ public class Machine {
     }
 
     public void voegProductToe(Product product) {
-        if (checkAanwezig(product) != null)
+        if (checkAanwezig(product.getBeschrijving()) != null)
             throw new IllegalArgumentException("Dit product zit al in de machine");
         producten.add(product);
     }
@@ -24,7 +24,7 @@ public class Machine {
     public void vulProductAan(Product product, int aantal) {
         if (aantal <= 0)
             throw new IllegalArgumentException("Geen geldig aantal om aan te vullen");
-        Product p = checkAanwezig(product);
+        Product p = checkAanwezig(product.getBeschrijving());
         if (p == null)
             throw new IllegalArgumentException("Dit product kan niet aangevuld worden omdat het nog niet geregistreerd is");
         p.wijzigAantal(aantal);
@@ -38,9 +38,9 @@ public class Machine {
         return null;
     }
 
-    public Product checkAanwezig(Product product) {
+    public Product checkAanwezig(String beschrijvingProduct) {
         for (Product p : getProducten())
-            if (p.getBeschrijving().equals(product.getBeschrijving()))
+            if (p.getBeschrijving().equals(beschrijvingProduct))
                 return p;
         return null;
     }
