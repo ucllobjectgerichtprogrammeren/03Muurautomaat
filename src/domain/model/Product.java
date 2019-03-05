@@ -1,6 +1,6 @@
 package domain.model;
 
-public class Product {
+public abstract class Product {
     private String beschrijving;
     private double prijs;
     private int aantal;
@@ -19,6 +19,8 @@ public class Product {
             throw new IllegalArgumentException("Geen geldige beschrijving voor product");
         this.beschrijving = beschrijving;
     }
+
+    public abstract double teBetalenPrijs();
 
     public double getPrijs() {
         return prijs;

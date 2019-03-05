@@ -54,7 +54,7 @@ public class MachineTest {
     }
 
     @Test
-    public void test_totaal_prijs_producten_zonder_korting() {
+    public void test_totaal_prijs_producten_nonFood() {
         machine.voegProductToe(nonFood1);
         machine.voegProductToe(nonFood2);
         assertEquals(0.0, machine.getTotaalPrijs(), delta);
@@ -62,7 +62,7 @@ public class MachineTest {
         double expected = 15 * 5;
         assertEquals(expected, machine.getTotaalPrijs(), delta);
         machine.vulProductAan(nonFood2, 7);
-        expected += 100 * 7;
+        expected += 100 * 7 *1.2;
         assertEquals(expected, machine.getTotaalPrijs(), delta);
     }
 
@@ -92,17 +92,5 @@ public class MachineTest {
         assertEquals(drink2, machine.vindProduct(drink3));
     }
 
-    @Test
-    public void test_voeg_nieuw_product_toe_verkeerde_klasse_zelfde_eigenschappen_succes(){
-        // succes omdat checkaanwezig() enkel beschrijving controleert
-        // IllegalArgumentException indien checkAanwezig() equals(Object o) zou gebruiken
-        Product snack3 = new Product("Mars", 20);
-        machine.voegProductToe(snack2);
-        assertNotEquals(snack3, snack2);
-        assertNotEquals(snack2,snack3);
-        machine.vulProductAan(snack3,5);
-        assertEquals(5,snack2.getAantal());
-
-    }
 
 }

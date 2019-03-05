@@ -1,6 +1,6 @@
 package domain.model;
 
-public class Food extends Product {
+public abstract class Food extends Product {
     private int korting;
 
     public Food(String beschrijving, double prijs) {
@@ -14,14 +14,14 @@ public class Food extends Product {
     }
 
     @Override
-    public double getPrijs() {
-        return super.getPrijs() * (1.-korting/100.);
+    public double teBetalenPrijs() {
+        return super.getPrijs() * (100 - korting) / 100;
     }
 
     @Override
     public String toString() {
         return super.toString()
-                +"\nVerkregen korting: "+getKorting();
+                + "\nVerkregen korting: " + getKorting();
     }
 
     private int getKorting() {

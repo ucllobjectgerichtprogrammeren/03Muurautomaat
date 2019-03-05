@@ -73,7 +73,7 @@ public class Machine {
     public double getTotaalPrijs() {
         double totaalPrijs = 0;
         for (Product p : getProducten())
-            totaalPrijs += p.getPrijs() * p.getAantal();
+            totaalPrijs += p.teBetalenPrijs() * p.getAantal();
         return totaalPrijs;
     }
 

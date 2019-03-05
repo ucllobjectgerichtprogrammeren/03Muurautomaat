@@ -17,6 +17,14 @@ public class NonFood extends Product {
     }
 
     @Override
+    public double teBetalenPrijs() {
+        if (toegelatenMin16)
+            return super.getPrijs();
+        else
+            return super.getPrijs()*1.20;
+    }
+
+    @Override
     public String toString() {
         return super.toString()
                 +"\nKT: "+(isToegelatenMin16()?"ja":"neen");
